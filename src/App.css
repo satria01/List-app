@@ -7,26 +7,8 @@
   height: 40vmin;
 }
 
-.button {
-  width: 80%;
-  height: 50%;
-  border: 1px solid black;
-  padding: 20px;
-  background-color: rgba(170, 170, 170, 0.568);
+.horizontal-div {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
-  text-align:left;
-}
-
-.list {
-  width:80%;
-  padding: 50px;
-  height:180px;
-  border-radius:10px 0 0 10px;
-  border-right:1px solid #fff;
-  text-align: left;
 }
 
 .App-header {
