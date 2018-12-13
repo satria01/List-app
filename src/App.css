@@ -9,6 +9,8 @@
 
 .horizontal-div {
   display: flex;
+  margin-left: 30%;
+  margin-right: 25%;
 }
 
 .App-header {

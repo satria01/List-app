@@ -6,6 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
 
 const styles = theme => ({
   root: {
@@ -16,25 +17,31 @@ const styles = theme => ({
   inline: {
     display: 'inline',
   },
+  scroll: {
+    height: '70%',
+    overflow: 'scroll',
+  }
 });
 
 const ChatView = (props) => {
   const { classes } = props;
   return (
     <List className={classes.root} >
-      <ListItem alignItems="flex-start">
-        <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-        </ListItemAvatar>
-        <ListItemText
-          primary={props.name}
-          secondary={
-            <React.Fragment>
-              {props.chat}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
+    <IconButton>
+        <ListItem alignItems="flex-start">
+          <ListItemAvatar>
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          </ListItemAvatar>
+          <ListItemText
+            primary={props.name}
+            secondary={
+              <React.Fragment>
+                {props.chat}
+              </React.Fragment>
+            }
+          />
+        </ListItem>
+      </IconButton>
     </List>
   );
 }
@@ -50,13 +57,19 @@ class ChatList extends Component {
         { name: "Contact 4", chat: 'this is some chat', },
         { name: "Contact 5", chat: 'this is some chat', },
         { name: "Contact 6", chat: 'this is some chat', },
+        { name: "Contact 7", chat: 'this is some chat', },
+        { name: "Contact 8", chat: 'this is some chat', },
+        { name: "Contact 9", chat: 'this is some chat', },
+        { name: "Contact 10", chat: 'this is some chat', },
+        { name: "Contact 11", chat: 'this is some chat', },
+        { name: "Contact 12", chat: 'this is some chat', },
       ]
     }
   }
   render() {
     const { classes } = this.props;
     return (
-      <li>
+      <div className={classes.scroll}>
         {this.state.chatShortDetail.map(chatShortDetail => (
           <ChatView
             classes={classes}
@@ -65,7 +78,7 @@ class ChatList extends Component {
           />
         ))
         }
-      </li>
+      </div>
     );
   }
 }

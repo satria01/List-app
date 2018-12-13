@@ -41,6 +41,10 @@ const styles = theme => ({
   avatar: {
     backgroundColor: red[500],
   },
+  scroll: {
+    height: '70%',
+    overflow: 'scroll',
+  }
 });
 
 const ContentView = (props)=> {
@@ -59,7 +63,7 @@ const ContentView = (props)=> {
               </IconButton>
             }
             title={props.title}
-            subheader={props.subheader}
+            subheader={props.date}
           />
           <CardMedia
             className={classes.media}
@@ -68,7 +72,7 @@ const ContentView = (props)=> {
           />
           <CardContent>
             <Typography component="p">
-              {props.detail}
+              {props.description}
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
@@ -88,20 +92,20 @@ class ContentList extends React.Component {
         this.state = {
           FeedData: [
             {   title: "This is some First feed",
-                subheader: 'September 14, 2016',
-                detail:
+                date: 'September 14, 2016',
+                description:
                     `This impressive paella is a perfect party dish and a fun meal to cook together with your guests.
                      Add 1 cup of frozen peas along with the mussels, if you like.`
              },
              {  title: "This is some second feed",
-                subheader: 'September 15, 2016',
-                detail:
+                date: 'September 15, 2016',
+                description:
                     `This impressive paella is a perfect party dish and a fun meal to cook together with your guests.
                     Add 1 cup of frozen peas along with the mussels, if you like.`
             },
             {   title: "This is some third feed",
-                subheader: 'September 16, 2016',
-                detail:
+                date: 'September 16, 2016',
+                description:
                     `This impressive paella is a perfect party dish and a fun meal to cook together with your guests.
                     Add 1 cup of frozen peas along with the mussels, if you like.`
             },
@@ -111,13 +115,13 @@ class ContentList extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <div className={classes.scroll}>
         {this.state.FeedData.map(FeedData => (
           <ContentView
             classes={classes}
             title={FeedData.title}
-            subheader={FeedData.subheader}
-            detail={FeedData.detail}
+            date={FeedData.date}
+            description={FeedData.description}
           />
         ))
         }
