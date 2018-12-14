@@ -43,7 +43,7 @@ const styles = theme => ({
   },
   scroll: {
     height: '70%',
-    overflow: 'scroll',
+    overflow: 'auto',
   }
 });
 
