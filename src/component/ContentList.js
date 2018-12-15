@@ -87,44 +87,31 @@ const ContentView = (props)=> {
     );
 }
 class ContentList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          FeedData: [
-            {   title: "This is some First feed",
-                date: 'September 14, 2016',
-                description:
-                    `This impressive paella is a perfect party dish and a fun meal to cook together with your guests.
-                     Add 1 cup of frozen peas along with the mussels, if you like.`
-             },
-             {  title: "This is some second feed",
-                date: 'September 15, 2016',
-                description:
-                    `This impressive paella is a perfect party dish and a fun meal to cook together with your guests.
-                    Add 1 cup of frozen peas along with the mussels, if you like.`
-            },
-            {   title: "This is some third feed",
-                date: 'September 16, 2016',
-                description:
-                    `This impressive paella is a perfect party dish and a fun meal to cook together with your guests.
-                    Add 1 cup of frozen peas along with the mussels, if you like.`
-            },
-          ]
-        }
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      FeedData: null
+    }
+  }
+
+  componentDidMount(){
+    fetch('http://localhost:3001/FeedData')
+      .then(response => response.json())
+      .then(FeedData => this.setState({FeedData}))
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.scroll}>
-        {this.state.FeedData.map(FeedData => (
+        {this.state.FeedData && this.state.FeedData.map(FeedData => (
           <ContentView
             classes={classes}
             title={FeedData.title}
             date={FeedData.date}
             description={FeedData.description}
           />
-        ))
-        }
+        ))}
       </div>
     );
   }

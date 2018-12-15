@@ -1,0 +1,50 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "chatShortDetail": [
+    { "name": "Contact 1", "chat": "this is some chat"},
+    { "name": "Contact 2", "chat": "this is some chat"},
+    { "name": "Contact 3", "chat": "this is some chat"},
+    { "name": "Contact 4", "chat": "this is some chat"},
+    { "name": "Contact 5", "chat": "this is some chat"},
+    { "name": "Contact 6", "chat": "this is some chat"},
+    { "name": "Contact 7", "chat": "this is some chat"},
+    { "name": "Contact 8", "chat": "this is some chat"},
+    { "name": "Contact 9", "chat": "this is some chat"},
+    { "name": "Contact 10", "chat": "this is some chat"},
+    { "name": "Contact 11", "chat": "this is some chat"},
+    { "name": "Contact 12", "chat": "this is some chat"}
+  ],
+  "FeedData": [
+    {   "title": "This is some First feed",
+        "date": "September 14, 2016",
+        "description":
+            "This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like."
+     },
+     {  "title": "This is some second feed",
+        "date": "September 15, 2016",
+        "description":
+            "This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like."
+    },
+    {   "title": "This is some third feed",
+        "date": "September 16, 2016",
+        "description":
+            "This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like."
+    }
+  ]
+}

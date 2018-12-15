@@ -13,7 +13,7 @@ class App extends Component {
         <div>
           <ContentList/>
         </div>
-    </div>
+      </div>
     );
   }
 }

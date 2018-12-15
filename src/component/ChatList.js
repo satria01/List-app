@@ -50,34 +50,33 @@ class ChatList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chatShortDetail: [
-        { name: "Contact 1", chat: 'this is some chat', },
-        { name: "Contact 2", chat: 'this is some chat', },
-        { name: "Contact 3", chat: 'this is some chat', },
-        { name: "Contact 4", chat: 'this is some chat', },
-        { name: "Contact 5", chat: 'this is some chat', },
-        { name: "Contact 6", chat: 'this is some chat', },
-        { name: "Contact 7", chat: 'this is some chat', },
-        { name: "Contact 8", chat: 'this is some chat', },
-        { name: "Contact 9", chat: 'this is some chat', },
-        { name: "Contact 10", chat: 'this is some chat', },
-        { name: "Contact 11", chat: 'this is some chat', },
-        { name: "Contact 12", chat: 'this is some chat', },
-      ]
+      chatShortDetail: null
     }
   }
+
+  componentDidMount(){
+    fetch('http://localhost:3001/chatShortDetail')
+      .then(response => {
+        return response.json()
+      })
+      .then(chatShortDetail => {
+        this.setState({
+          chatShortDetail
+        })
+      })
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.scroll}>
-        {this.state.chatShortDetail.map(chatShortDetail => (
+        {this.state.chatShortDetail && this.state.chatShortDetail.map(chatShortDetail => (
           <ChatView
             classes={classes}
             name={chatShortDetail.name}
             chat={chatShortDetail.chat}
           />
-        ))
-        }
+        ))}
       </div>
     );
   }
