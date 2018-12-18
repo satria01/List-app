@@ -13,6 +13,7 @@ import red from '@material-ui/core/colors/red';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ChatList from '../Contact/ContactComponent/ChatList';
 
 const styles = theme => ({
   card: {
@@ -47,44 +48,44 @@ const styles = theme => ({
   }
 });
 
-const ContentView = (props)=> {
-    const { classes } = props;
-    return (
-        <Card className={classes.card}>
-          <CardHeader
-            avatar={
-              <Avatar aria-label="Recipe" className={classes.avatar}>
-                S
+const ContentView = (props) => {
+  const { classes } = props;
+  return (
+    <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="Recipe" className={classes.avatar}>
+            S
               </Avatar>
-            }
-            action={
-              <IconButton>
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title={props.title}
-            subheader={props.date}
-          />
-          <CardMedia
-            className={classes.media}
-            image="/static/images/cards/paella.jpg"
-            title="This is picture"
-          />
-          <CardContent>
-            <Typography component="p">
-              {props.description}
-            </Typography>
-          </CardContent>
-          <CardActions className={classes.actions} disableActionSpacing>
-            <IconButton aria-label="Add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="Share">
-              <ShareIcon />
-            </IconButton>
-          </CardActions>
-        </Card>
-    );
+        }
+        action={
+          <IconButton>
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title={props.title}
+        subheader={props.date}
+      />
+      <CardMedia
+        className={classes.media}
+        image="/static/images/cards/paella.jpg"
+        title="This is picture"
+      />
+      <CardContent>
+        <Typography component="p">
+          {props.description}
+        </Typography>
+      </CardContent>
+      <CardActions className={classes.actions} disableActionSpacing>
+        <IconButton aria-label="Add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="Share">
+          <ShareIcon />
+        </IconButton>
+      </CardActions>
+    </Card>
+  );
 }
 class ContentList extends React.Component {
   constructor(props) {
@@ -94,25 +95,28 @@ class ContentList extends React.Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     fetch('http://localhost:3001/FeedData')
       .then(response => response.json())
-      .then(FeedData => this.setState({FeedData}))
+      .then(FeedData => this.setState({ FeedData }))
   }
 
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.scroll}>
-        {this.state.FeedData && this.state.FeedData.map(FeedData => (
-          <ContentView
-            classes={classes}
-            title={FeedData.title}
-            date={FeedData.date}
-            description={FeedData.description}
-          />
-        ))}
-      </div>
+      <div style={{display: 'flex'}}>
+        <ChatList />
+        <div className={classes.scroll}>
+          {this.state.FeedData && this.state.FeedData.map(FeedData => (
+            <ContentView
+              classes={classes}
+              title={FeedData.title}
+              date={FeedData.date}
+              description={FeedData.description}
+            />
+          ))}
+        </div>
+      </div >
     );
   }
 }

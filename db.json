@@ -1,34 +1,17 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
   "chatShortDetail": [
-    { "name": "Contact 1", "chat": "this is some chat"},
-    { "name": "Contact 2", "chat": "this is some chat"},
-    { "name": "Contact 3", "chat": "this is some chat"},
-    { "name": "Contact 4", "chat": "this is some chat"},
-    { "name": "Contact 5", "chat": "this is some chat"},
-    { "name": "Contact 6", "chat": "this is some chat"},
-    { "name": "Contact 7", "chat": "this is some chat"},
-    { "name": "Contact 8", "chat": "this is some chat"},
-    { "name": "Contact 9", "chat": "this is some chat"},
-    { "name": "Contact 10", "chat": "this is some chat"},
-    { "name": "Contact 11", "chat": "this is some chat"},
-    { "name": "Contact 12", "chat": "this is some chat"}
+    { "name": "Contact1", "chat": "this is some chat"},
+    { "name": "Contact2", "chat": "this is some chat"},
+    { "name": "Contact3", "chat": "this is some chat"},
+    { "name": "Contact4", "chat": "this is some chat"},
+    { "name": "Contact5", "chat": "this is some chat"},
+    { "name": "Contact6", "chat": "this is some chat"},
+    { "name": "Contact7", "chat": "this is some chat"},
+    { "name": "Contact8", "chat": "this is some chat"},
+    { "name": "Contact9", "chat": "this is some chat"},
+    { "name": "Contact10", "chat": "this is some chat"},
+    { "name": "Contact11", "chat": "this is some chat"},
+    { "name": "Contact12", "chat": "this is some chat"}
   ],
   "FeedData": [
     {   "title": "This is some First feed",

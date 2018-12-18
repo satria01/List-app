@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
+import { NavLink } from 'react-router-dom'
 
 const styles = theme => ({
   root: {
@@ -27,7 +27,7 @@ const ChatView = (props) => {
   const { classes } = props;
   return (
     <List className={classes.root} >
-    <IconButton>
+      <NavLink to={`/profile/${props.name}`}>
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
             <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
@@ -41,7 +41,7 @@ const ChatView = (props) => {
             }
           />
         </ListItem>
-      </IconButton>
+      </NavLink>
     </List>
   );
 }
