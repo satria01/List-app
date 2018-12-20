@@ -14,6 +14,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ChatList from '../Contact/ContactComponent/ChatList';
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {getContentList} from '../../redux/action/ContentListAction';
 
 const styles = theme => ({
   card: {
@@ -88,26 +91,18 @@ const ContentView = (props) => {
   );
 }
 class ContentList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      FeedData: null
-    }
-  }
 
   componentDidMount() {
-    fetch('http://localhost:3001/FeedData')
-      .then(response => response.json())
-      .then(FeedData => this.setState({ FeedData }))
+    this.props.getContentListAction();
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, ContentList } = this.props;
     return (
       <div style={{display: 'flex'}}>
         <ChatList />
         <div className={classes.scroll}>
-          {this.state.FeedData && this.state.FeedData.map(FeedData => (
+          {ContentList && ContentList.map(FeedData => (
             <ContentView
               classes={classes}
               title={FeedData.title}
@@ -125,4 +120,12 @@ ContentList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ContentList);
+const mapStateToProps = state => ({
+  ContentList: state.ContentListReducer,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getContentListAction: bindActionCreators(getContentList, dispatch),
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(ContentList));

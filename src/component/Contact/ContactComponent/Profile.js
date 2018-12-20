@@ -1,6 +1,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -8,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
+import { bindActionCreators } from '../../../../../../../AppData/Local/Microsoft/TypeScript/3.2/node_modules/redux';
+import getChatList from '../../../redux/action/ChatListAction';
 
 
 const styles = theme => ({
@@ -81,18 +84,22 @@ const styles = theme => ({
 });
 
 class Profile extends React.Component {
-  state = {
-    value: 0,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 0,
+      isloading: true,
+    }
+  }
 
-  handleChange = (event, value) => {
+  handleChange = ( value) => {
     this.setState({ value });
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, chatList } = this.props;
     const { value } = this.state;
-
+    const newData = chatList.chatShortDetail[chatList.id];
     return (
       <div className={classes.root}>
         <div>
@@ -102,10 +109,10 @@ class Profile extends React.Component {
           <Card className={classes.card}>
             <CardContent>
               <Typography variant="h5" component="h2">
-                Karin
+                {newData.name}
               </Typography>
               <Typography component="p">
-                This is some of the personal information.
+                {newData.chat}
               </Typography>
             </CardContent>
           </Card>
@@ -147,4 +154,15 @@ Profile.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Profile);
+const mapStateToProps = state => ({
+  chatList: state.ChatListReducer,
+})
+
+const mapDispatchToProps = dispatch => ({
+  getChatList: bindActionCreators(getChatList, dispatch),
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(Profile));

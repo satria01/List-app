@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -6,7 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 
 const styles = theme => ({
   root: {
@@ -47,30 +48,16 @@ const ChatView = (props) => {
 }
 
 class ChatList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      chatShortDetail: null
-    }
-  }
-
   componentDidMount(){
-    fetch('http://localhost:3001/chatShortDetail')
-      .then(response => {
-        return response.json()
-      })
-      .then(chatShortDetail => {
-        this.setState({
-          chatShortDetail
-        })
-      })
+    this.props.getChatListAction();
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, chatList } = this.props;
+
     return (
       <div className={classes.scroll}>
-        {this.state.chatShortDetail && this.state.chatShortDetail.map(chatShortDetail => (
+        {chatList && chatList.map(chatShortDetail => (
           <ChatView
             classes={classes}
             name={chatShortDetail.name}
@@ -85,4 +72,9 @@ class ChatList extends Component {
 ChatView.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(ChatList);
+
+const mapStateToProps = state => ({
+  chatList: state.ChatListReducer,
+});
+
+export default connect(mapStateToProps, null)(withStyles(styles)(ChatList));
